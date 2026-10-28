@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>z-index 스타일 프로퍼티</title>
+  <style>
+    div {
+      position: relative;
+    }
+    img {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function init() {
+      let imgs = document.getElementsByTagName("img");
+      for (let i = 0; i < imgs.length; i++) {
+        imgs[i].style.zIndex = i;
+        imgs[i].onclick = function() {
+          // 클릭된 카드를 가장 아래(z-index = 0)로 보내고 나머지 카드의 z-index를 올려줌
+          for (let j = 0; j < imgs.length; j++) {
+            imgs[j].style.zIndex = (parseInt(imgs[j].style.zIndex) + 3) % 4;
+          }
+        };
+      }
+    }
+  </script>
+</head>
+<body onload="init()">
+  <h3>z-index 스타일 프로퍼티</h3>
+  <hr>
+  <div>
+    <img src="media/spade-A.png" width="100" height="140" alt="스페이드A">
+    <img src="media/spade-2.png" width="100" height="140" alt="스페이드2">
+    <img src="media/spade-3.png" width="100" height="140" alt="스페이드3">
+    <img src="media/spade-7.png" width="100" height="140" alt="스페이드7">
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>갬블링 게임</title>
+  <style>
+    div.box {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 1px solid violet;
+      background-color: aliceblue;
+      font-size: 35px;
+      font-style: italic;
+      color: blue;
+      text-align: center;
+      line-height: 50px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 15px;
+      font-style: italic;
+      font-size: 20px;
+      color: violet;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    let numbers = [0, 0, 0];
+    let clickedCount = 0;
+
+    function changeNumber(obj, index) {
+      if (clickedCount === 3) return; // 이미 끝난 경우 리셋 전까지 클릭 방지
+
+      let num = Math.floor(Math.random() * 3); // 0~2 난수
+      obj.innerHTML = num;
+      numbers[index] = num;
+      clickedCount++;
+
+      if (clickedCount === 3) {
+        let resultDiv = document.getElementById("result");
+        if (numbers[0] === numbers[1] && numbers[1] === numbers[2]) {
+          resultDiv.innerHTML = "Success(click here to do again)";
+        } else {
+          resultDiv.innerHTML = "fail(click here to do again)";
+        }
+      }
+    }
+
+    function resetGame() {
+      let boxes = document.getElementsByClassName("box");
+      for (let i = 0; i < boxes.length; i++) {
+        boxes[i].innerHTML = "0";
+        numbers[i] = 0;
+      }
+      document.getElementById("result").innerHTML = "";
+      clickedCount = 0;
+    }
+  </script>
+</head>
+<body>
+  <h3>갬블링 게임</h3>
+  <p>각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다.</p>
+  <hr>
+  <div class="box" onclick="changeNumber(this, 0)">0</div>
+  <div class="box" onclick="changeNumber(this, 1)">0</div>
+  <div class="box" onclick="changeNumber(this, 2)">0</div>
+  <div id="result" onclick="resetGame()"></div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>transform:rotate() - Chrome</title>
+  <script>
+    let scale = 1;
+    function scaleImg(obj) {
+      scale++;
+      if (scale > 4) scale = 1; // 4배 넘어가면 다시 원본 크기로 리셋
+      obj.style.transform = "scale(" + scale + ", 1)";
+    }
+  </script>
+</head>
+<body>
+  <h3>클릭하면 2,3,4배로 옆으로 늘어납니다.</h3>
+  <hr>
+  <img src="media/spongebob.png" alt="스폰지밥" onclick="scaleImg(this)">
+</body>
+</html>
